@@ -4,7 +4,7 @@ const mongoose = require("mongoose")
 const app = express();
 
 
-mongoose.connect("mongodb+srv://sky:skydesafio@cluster0-tjvtu.mongodb.net/usuario?retryWrites=true&w=majority", { useNewUrlParser: true,  useUnifiedTopology: true})
+mongoose.connect("mongodb+srv://sky:skydesafio@cluster0-tjvtu.mongodb.net/usuario?retryWrites=true&w=majority", { useNewUrlParser: true,  useUnifiedTopology: true, useCreateIndex: true})
 
 let db = mongoose.connection;
 db.on("error", console.log.bind(console, "connection error:"))
@@ -12,6 +12,7 @@ db.once("open", function(){
   console.log("Conexão feita com sucesso.")
 })
 
+const usuarios = require("./routes/usuarioRoutes")
 
 
 app.use(function(req, res, next) {
@@ -23,4 +24,6 @@ app.use(function(req, res, next) {
     next()
   });
 
-  module.exports = app
+app.use('/usuario', usuarios)
+
+module.exports = app
