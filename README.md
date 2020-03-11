@@ -6,6 +6,7 @@
 * 4 - npm body parser e nodemon
 * 5 - definir schema e ajustar banco de dados
 * 6 - definir post da controller para popular o banco de dados
+* 7 - criar rota de 
 
 
 

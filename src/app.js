@@ -1,6 +1,6 @@
 const express = require("express");
-const mongoose = require("mongoose")
-//const bodyParser = require('body-parser');
+const mongoose = require("mongoose");
+const bodyParser = require('body-parser');
 const app = express();
 
 
@@ -23,6 +23,8 @@ app.use(function(req, res, next) {
     )
     next()
   });
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/usuario', usuarios)
 
