@@ -19,37 +19,17 @@ exports.post = (req, res) => {
 exports.getSignIn = async (req, res, next) => {
     const email = req.params.email;
     const senha = req.params.senha;
-    Usuarios.find({email, senha}, function(err, usuarios){
-        if (err) return res.status(400).send({message: "Email ou senha invalidos"});
+    await Usuarios.find({email, senha}, function(err, usuarios){
+        if (Object.keys(usuarios).length == 0) return res.status(400).send({message: "Email ou senha invalidos"});
         const info = usuarios.map(usuario =>{
          return{  
             email: usuario.email,
             senha: usuario.senha
         }})
-    res.status(200).send(info)
+    res.status(200).send({message: "Usuario logado!"})
     
     })}
     
-    //Usuarios.findOne({email}, function(err,Usuarios){
-     //   if (err) res.status(500).send(err);
-    //    res.status(200).send(Usuarios)
-   // })
-//}
-
-
-
-/*exports.postSignIn = async (req, res, next) => {
-    const { email } = req.body;
-    const emaill = await Usuarios.find({email});
-    if(!emaill) {
-        return res.status(401).send({message: err})
-     }
-     res.status(200).send(email);
-        }
-
-
-*/
-
 
 //pega todos os usuarios
 exports.getAll = (req, res, next) => {
@@ -61,15 +41,31 @@ exports.getAll = (req, res, next) => {
     })
 }
 
-//exports.getSignIn = (req, res, next ) = {
+// atualizar por id
+exports.updateNome = (req, res, next) => {
+    Usuarios.updateOne(
+        {_id: req.params.id},
+        { $set: req.body },
+        {upsert: false},
+        function (err) {
+            if (Object.keys.length == 0) return res.status(400).send({message: "Email ou senha invalidos"});
+            res.status(200).send({ mensagem: "Atualizado com sucesso!" });
+        
+        }
+    )
+}
 
-//}
+// deletar por email
+exports.deleteUsuario = (req, res, next) => {
+    Usuarios.findOne({ "email": req.params.email }, function (err, usuario) {
+        if (err) res.status(500).send(err);
 
-//exports.listMentions = async (req, res) => {
-//    try {
- //       const data = await Mentions.find({}, ‘friend mention’);
- //       res.status(200).send(data);
- //     } catch (e) {
- //       res.status(500).send({message: 'Falha ao carregar as menções!'});
- //     }
- //   };
+        if (!usuario) return res.status(404).send({ message: "Não localizamos o usuario para exclusão!" });
+
+        usuario.remove(function (err) {
+            if (!err) {
+                res.status(200).send({ message: 'Usuario removido com sucesso!' });
+            }
+        })
+    })
+};

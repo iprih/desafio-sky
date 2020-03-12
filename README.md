@@ -1,13 +1,38 @@
-#### Desafio Sky
+#### **_Desafio Sky_**
 
-* 1 - npm init
-* 2 - estruturação de pastas
-* 3 - npm i e npm express
-* 4 - npm body parser e nodemon
-* 5 - definir schema e ajustar banco de dados
-* 6 - definir post da controller para popular o banco de dados
-* 7 - criar rota de 
+#### Objetivo:
+Aplicativo backend que irá expor uma API RESTful de criação de sing up/sign in.
 
+ - Após clonar o projeto, instalar => npm i express
+
+**Rotas realizadas**
+
+- Usuarios
+
+1. GET /usuario - Buscar todos os usuários.
+2. GET /usuario/:email/:senha/signin - Sign In.
+3. POST /usuario - Cadastrar novo usuário.
+4. PUT /usuario/:_id - Alterar dado de usuário por ID.
+5. DELETE /usuario/:email - Deletar usuário por email.
+
+**Ferramentas e Tecnologias utilizadas**
+
+- Node.js
+- MongoDB na nuvem
+- NPM
+- Visual Studio Code
+- Git e Github
+- Heroku
+
+**Dependências utilizadas**
+
+ - Express.js
+ - Nodemon
+ - Body-Parser
+ - Mongoose
+ - Bcryptjs
+
+#### Heroku - https://desafio-sky.herokuapp.com/
 
 
 

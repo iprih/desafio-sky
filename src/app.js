@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 //banco na nuvem
-mongoose.connect("mongodb+srv://sky:skydesafio@cluster0-tjvtu.mongodb.net/usuario?retryWrites=true&w=majority", {useNewUrlParser: true,  useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: true})
+mongoose.connect("mongodb+srv://sky:skydesafio@cluster0-tjvtu.mongodb.net/desafiosky?retryWrites=true&w=majority", {useNewUrlParser: true,  useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: true})
 
 //conexão com o banco
 let db = mongoose.connection;
@@ -33,6 +33,6 @@ app.use(function(req, res, next) {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/usuario', usuarios)
+app.use('/', usuarios)
 
 module.exports = app
