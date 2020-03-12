@@ -7,6 +7,7 @@ const UsuariosSchema = new mongoose.Schema({
     email: {type: String, require: true, unique:true},
     senha: {type: String, require: true},
     telefones: [{
+    _id: false,
     numero: {type: String},
     ddd: {type: String},
     }],
